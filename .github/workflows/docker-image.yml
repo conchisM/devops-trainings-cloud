@@ -23,6 +23,7 @@ jobs:
       - name: Check out the repository
         uses: action/checkout@v2
         with:
+          fetch-depth: 0
           repository: ${{ github.repository }}
           token: ${{ secrets.PAT }}
         
