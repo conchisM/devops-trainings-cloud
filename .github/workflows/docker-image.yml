@@ -14,8 +14,15 @@ env:
 jobs:
   build_and_push:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
-      - uses: action/checkout@v2
+      - name: Checkout repository
+        uses: action/checkout@v4
+        
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
         uses: yc-actions/yc-cr-login@v1.2.0
         with:
@@ -23,5 +30,5 @@ jobs:
 
       - name: Build and push image to Yandex Cloud CR
         run: |
-          docker build --tag cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG
+          docker build --tag cr.yandex/${{ env.CR_REGISTRY }}/${{ env.CR_REPO }}:${{ env.IMAGE_TAG }} .
+          docker push cr.yandex/${{ env.CR_REGISTRY }}/${{ env.CR_REPO }}:${{ env.IMAGE_TAG }}
