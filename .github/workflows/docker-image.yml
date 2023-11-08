@@ -21,7 +21,10 @@ jobs:
       
     steps:
       - name: Check out the repository
-        uses: action/checkout@v1
+        uses: action/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.PAT }}
         
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
         uses: yc-actions/yc-cr-login@v1.2.0
