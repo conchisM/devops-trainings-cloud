@@ -7,19 +7,21 @@ on:
     branches: [ "main" ]
 
 env:
-  
-
+  CR_REGISTRY: crps36i3s1dfq9gn5nu5
+  CR_REPO: catgpt
+  IMAGE_TAG: ${{ github.sha }}
+ 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
     steps:
       - uses: action/checkout@v2
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
         uses: yc-actions/yc-cr-login@v1.2.0
         with:
-          yc-sa-json-credentials: 
-            
-    
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+          yc-sa-json-credentials:  ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+
+      - name: Build and push image to Yandex Cloud CR
+        run: |
+          docker build --tag cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG
