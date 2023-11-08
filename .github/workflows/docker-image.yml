@@ -25,5 +25,5 @@ jobs:
           CR_REPO: catgpt
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build --tag cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG }} .
-          docker push cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG }}
+          docker build --tag cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG .
+          docker push cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG
