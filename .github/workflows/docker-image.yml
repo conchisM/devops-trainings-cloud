@@ -20,6 +20,8 @@ jobs:
       packages: write
       
     steps:
+      - name: Check out the repository
+        uses: action/checkout@v1
         
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
         uses: yc-actions/yc-cr-login@v1.2.0
