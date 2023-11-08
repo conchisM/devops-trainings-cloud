@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         
       - name: Yandex Cloud CR "Login" Action for GitHub Actions
-        uses: yc-actions/yc-cr-login@v1.2.0
+        uses: yc-actions/yc-cr-login@v1
         with:
           yc-sa-json-credentials:  ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
@@ -25,5 +25,5 @@ jobs:
           CR_REPO: catgpt
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build --tag cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG .
+          docker build -t cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG catgpt/
           docker push cr.yandex/$CR_REGISTRY/$CR_REPO:$IMAGE_TAG
