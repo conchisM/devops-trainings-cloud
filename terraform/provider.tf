@@ -4,7 +4,7 @@ terraform {
       source = "yandex-cloud/yandex"
     }
   }
-  required_version = ">= 0.87.0"
+  required_version = ">= 0.13"
 }
 
 provider "yandex" {

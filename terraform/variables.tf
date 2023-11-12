@@ -8,3 +8,8 @@ variable "region" {
 	type        = string
 	default     = "ru-central1-a"
 }
+
+variable "registry" {
+        description = "CR"
+        type        = string
+}
